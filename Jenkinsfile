@@ -10,10 +10,10 @@ pipeline {
           echo "Esto siempre saldrá por pantalla"
         }
         failure {
-
+          echo "Esto si falla"
         }
         success {
-
+          echo "Y esto si todo ok"
         }
       }
     }
