@@ -6,17 +6,7 @@ pipeline {
         echo 'BUILD'
       }
     }
-    post {
-      always {
-        echo "Esto siempre saldrá por pantalla"
-      }
-      failure {
-
-      }
-      success {
-
-      }
-    }
+    
     stage('Test') {
       steps {
         echo 'TEST'
@@ -26,10 +16,17 @@ pipeline {
       steps {
         echo 'DEPLOY'
       }
-    }
+    } 
     post {
       always {
+        echo "Esto siempre saldrá por pantalla"
         deleteDir()
+      }
+      failure {
+
+      }
+      success {
+
       }
     }
   }
