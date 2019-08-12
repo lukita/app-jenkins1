@@ -3,18 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'BUILD'
-      }
-      post {
-        always {
-          echo "Esto siempre saldrá por pantalla"
-        }
-        failure {
-          echo "Esto si falla"
-        }
-        success {
-          echo "Y esto si todo ok"
-        }
+        sh 'docker build -t app .'
       }
     }
     stage('Test') {
