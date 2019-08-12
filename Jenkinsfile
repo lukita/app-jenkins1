@@ -1,14 +1,35 @@
 pipeline {
   agent any
   stages {
-    stage('Inicio') {
+    stage('Build') {
       steps {
-        echo 'Hola desde Stage Inicio'
+        echo 'BUILD'
       }
     }
-    stage('Test2') {
+    post {
+      always {
+        echo "Esto siempre saldrá por pantalla"
+      }
+      failure {
+
+      }
+      success {
+
+      }
+    }
+    stage('Test') {
       steps {
-        echo 'Mensaje desde Test2'
+        echo 'TEST'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'DEPLOY'
+      }
+    }
+    post {
+      always {
+        deleteDir()
       }
     }
   }
