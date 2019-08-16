@@ -20,8 +20,10 @@ pipeline {
     }
     stage('Push Registry') {
       steps {
-        sh 'docker tag app:test karekai/app:stable'
-        sh 'docker push karekai/app:stable'
+        withCredentials([usernamePassword(credentialsId: 'DockerHubUser', passwordVariable: 'password', usernameVariable: 'username')]) {
+          sh 'docker tag app:test karekai/app:stable'
+          sh 'docker push karekai/app:stable'
+        }
       }
     }
   }
