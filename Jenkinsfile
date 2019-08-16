@@ -14,7 +14,7 @@ pipeline {
       }
       post {
         always {
-          sh 'docker stop app'
+          sh 'docker stop app:test'
         }
       }
     }
