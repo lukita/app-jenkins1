@@ -21,6 +21,7 @@ pipeline {
     stage('Push Registry') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'DockerHubUser', passwordVariable: 'password', usernameVariable: 'username')]) {
+          sh 'docker login -u $username -p $password'
           sh 'docker tag app:test karekai/app:stable'
           sh 'docker push karekai/app:stable'
         }
