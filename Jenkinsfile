@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t app .'
+        sh 'docker build -t app:test .'
       }
     }
     stage('Test') {
       steps {
         echo 'TEST'
-        sh 'docker run -d -p 80:80 --rm app'
+        sh 'docker run -d -p 80:80 --name app app:test'
         sh '/bin/nc -vz localhost 80'
       }
       post {
@@ -20,7 +20,7 @@ pipeline {
     }
     stage('Push Registry') {
       steps {
-        sh 'docker tag app karekai/app:stable'
+        sh 'docker tag app:test karekai/app:stable'
         sh 'docker push karekai/app:stable'
       }
     }
